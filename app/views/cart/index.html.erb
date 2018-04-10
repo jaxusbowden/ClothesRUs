@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+
+<table id="customers">
+    <% total = 0 %>
+    <% @cart.each do |id, quantity | %>
+    
+    <% item = Item.find_by_id(id) %>
+        <tr>
+        <td>
+            <div class="image">
+                <%= link_to (image_tag item.image_url, :style =>"height:40px"), item %>
+        
+            </div>
+        </td>
+        
+        <td><%= link_to item.title, item %></td>
+        <td><a href="/cart/remove/<%= item.id %>">Remove From Cart</a></td>
+        <td><%= number_to_currency(item.price, :unit => "€") %> </td>
+        <td><%= quantity %></td>
+        <td><%= number_to_currency(quantity * item.price, :unit => "€") %></td>
+    </tr>
+    <tr> <% total += quantity * item.price %> 
+        <td>
+            Grand Total: <%= number_to_currency(total, :unit => "€") %>
+            
+        </td>
+        
+    </tr>
+    
+    <% end %>
+    
+</table>

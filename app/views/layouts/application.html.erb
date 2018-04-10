@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ClothesRUs</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>ClothesRUs</h1>
+      
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Products", products_path %></li>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Contact", contact_path %></li>
+        
+        <% if user_signed_in? %>
+              <li><a href="#">Hi <%= current_user.email %></a></li>
+              <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li><%= link_to 'Register', new_user_registration_path %></li>
+              <li><%= link_to 'Sign in', new_user_session_path %></li>
+            <% end %>
+      </ul>
+      
+    </div>
+    
+     
+    <div id='container'>
+      <div id='content'>
+        <p class='notice'><%= flash[:notice] %></p>
+      <%= yield %>
+      </div>
+      <div id='first-column'>
+        <div class="loginbox">
+            <h2 class="BoxHeader">Search Catalog</h2>
+            
+
+        </div>
+        
+        <div class="searchbox">
+          <h2 class="BoxHeade">Search Catalogue</h2>
+        </div>
+      </div>
+ 
+    
+    
+    <div class="footer">
+      <%= link_to 'New Category', new_category_path, :class =>"button", :role=>"button"  %>
+      <%= link_to 'New Product', new_product_path, :class =>"button", :role=>"button"  %>
+    </div>
+  </body>
+</html>
