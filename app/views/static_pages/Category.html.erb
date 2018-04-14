@@ -1,0 +1,44 @@
+<h1>Category products</h1>
+
+<% if @products.length == 0 %>
+<h2>Need some text here</h2>
+<% end %>
+
+
+ <% @products.each do |product| %>
+    
+             <div class="producthols">
+        <h1><%= product.title %></h1>
+     <%= link_to (image_tag product.image_url, :class => "productholsIm"), product %>
+        <%= product.image_url %>
+       
+       <p><%= product.description %></p>
+       <p>Price <%= number_to_currency(product.price, :unit =>"€") %>
+       <br>
+       Category: <%= product.category %>
+       <br>
+      
+       
+       
+       <P>
+        
+        <% if user_signed_in? %>
+        <%= link_to 'Show', product, :class =>"button", :role=>"button" %>
+        <% end %>
+        
+        <a href="/cart/<%= product.id %>" class="button">Add To Cart</a>
+        
+         <% if session[:login] == 1 %>
+        
+        <%= link_to 'Edit', edit_product_path(product), :class =>"button", :role=>"button"  %>
+        <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"button", :role=>"button"  %>
+     
+        <% end %>
+     
+     
+     
+     
+     
+     </P>
+             </div>
+    <% end %>
