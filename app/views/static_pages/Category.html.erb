@@ -1,20 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h1>Category products</h1>
 
-<div id="itemsContainer">
-  <h1>Products</h1>
-  
-      <% @products.each do |product| %>
+<% if @products.length == 0 %>
+<h2>Need some text here</h2>
+<% end %>
+
+
+ <% @products.each do |product| %>
     
              <div class="producthols">
         <h1><%= product.title %></h1>
-     <%= link_to (product_tag product.image_url, :class => "productholsIm"), item %>
+     <%= link_to (image_tag product.image_url, :class => "productholsIm"), product %>
         <%= product.image_url %>
        
        <p><%= product.description %></p>
        <p>Price <%= number_to_currency(product.price, :unit =>"€") %>
        <br>
-       Type: <%= product.type %>
-       </p>
+       Category: <%= product.category %>
+       <br>
+      
        
        
        <P>
@@ -39,7 +42,3 @@
      </P>
              </div>
     <% end %>
-    
- </div>
-<br>
-<%= link_to 'New Item', new_item_path %>

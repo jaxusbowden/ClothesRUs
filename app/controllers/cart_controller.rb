@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+  before_action :authenticate_user!
   def index
     # pass the information to the view page of cart 
     if session[:cart] then
@@ -36,6 +37,25 @@ class CartController < ApplicationController
     redirect_to :action => :index
     
   end
+  
+  
+  def remove
+    
+    id = params[:id]
+    cart = session[:cart]
+     if cart[id] == 1 then
+       cart.delete id
+     else
+     cart[id] = cart[id] - 1
+    end
+    redirect_to :action => :index
+    
+  end
+ 
+end
+
+
+
   
   
   def remove

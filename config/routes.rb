@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get '/cart/:id', to: 'cart#add'
   get '/cart/remove/:id', to: 'cart#remove'
   
-
+  root :to => 'site#home'
   
   
 
