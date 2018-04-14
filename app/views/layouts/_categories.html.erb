@@ -1,3 +1,16 @@
-<h1>Categories</h1>
-<br>
-   
+<h1>Main Categories</h1>
+
+
+    
+    <% @categories.each do |category| %>
+        <div class="producthols">
+    
+    <h1><%= category.title %></h1>
+    <%= link_to (image_tag category.image, :class => "productholsIm" ), category %>
+    <p><%= category.description %></p>
+    <p><a href="/category/<%= category.title %>"><%= category.title %></a></p>
+    
+        </div>
+    <% end %>
+    
+    
